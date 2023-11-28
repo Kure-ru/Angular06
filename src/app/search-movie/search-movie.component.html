@@ -1,0 +1,79 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="movieForm">
+  <ng-container formArrayName="movieDetails">
+    <div>
+      <label for="titre">Titre</label>
+      <input id="titre" type="text" formControlName="titre" required />
+      <div
+        *ngIf="
+          movieDetails.get('titre')?.invalid &&
+          movieDetails.get('titre')?.touched
+        "
+      >
+        Titre is required.
+      </div>
+    </div>
+    <div>
+      <label for="identifiant">Identifiant</label>
+      <input
+        id="identifiant"
+        type="text"
+        formControlName="identifiant"
+        required
+      />
+      <div
+        *ngIf="
+          movieDetails.get('identifiant')?.invalid &&
+          movieDetails.get('identifiant')?.touched
+        "
+      >
+        Identifiant is required.
+      </div>
+    </div>
+  </ng-container>
+
+  <div>
+    <label for="type">Type </label>
+    <select formControlName="type" required>
+      <option value="film">film</option>
+      <option value="série">série</option>
+      <option value="épisode">épisode</option>
+    </select>
+    <div
+      *ngIf="movieForm.get('type')?.invalid && movieForm.get('type')?.touched"
+    >
+      Type is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="année_de_sortie">Année de sortie</label
+    ><input
+      type="text"
+      id="année_de_sortie"
+      formControlName="année_de_sortie"
+    />
+    <div
+      *ngIf="
+        movieForm.get('année_de_sortie')?.invalid &&
+        movieForm.get('année_de_sortie')?.touched
+      "
+    >
+      Année de sortie is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="fiche">Fiche </label>
+    <select formControlName="fiche" required>
+      <option value="complète">complète</option>
+      <option value="courte">courte</option>
+    </select>
+    <div
+      *ngIf="movieForm.get('fiche')?.invalid && movieForm.get('fiche')?.touched"
+    >
+      Fiche is required.
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
